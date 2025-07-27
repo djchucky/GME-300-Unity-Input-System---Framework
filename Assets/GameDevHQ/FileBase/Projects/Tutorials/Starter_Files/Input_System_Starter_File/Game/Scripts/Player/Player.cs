@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Scripts.LiveObjects;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 namespace Game.Scripts.Player
 {
     [RequireComponent(typeof(CharacterController))]
     public class Player : MonoBehaviour
     {
+        private GameInputAction _input;
         private CharacterController _controller;
         private Animator _anim;
         [SerializeField]
@@ -21,6 +23,11 @@ namespace Game.Scripts.Player
         private CinemachineVirtualCamera _followCam;
         [SerializeField]
         private GameObject _model;
+        [SerializeField] private float _rotateSpeed = 20f;
+        private Vector3 _moveDirection;
+        private Vector3 _direction;
+        
+
 
 
         private void OnEnable()
@@ -37,6 +44,8 @@ namespace Game.Scripts.Player
 
         private void Start()
         {
+            _input = new GameInputAction();
+            _input.Player.Enable();
             _controller = GetComponent<CharacterController>();
 
             if (_controller == null)
@@ -46,6 +55,8 @@ namespace Game.Scripts.Player
 
             if (_anim == null)
                 Debug.Log("Failed to connect the Animator");
+
+            
         }
 
         private void Update()
@@ -58,13 +69,19 @@ namespace Game.Scripts.Player
         private void CalcutateMovement()
         {
             _playerGrounded = _controller.isGrounded;
-            float h = Input.GetAxisRaw("Horizontal");
-            float v = Input.GetAxisRaw("Vertical");
+            //float h = Input.GetAxisRaw("Horizontal");
+            //float v = Input.GetAxisRaw("Vertical");
+            _moveDirection = _input.Player.Movement.ReadValue<Vector2>();
+            Debug.Log($"Movement value X: {_moveDirection.x}, Movement value Y: {_moveDirection.y}");
 
-            transform.Rotate(transform.up, h);
 
-            var direction = transform.forward * v;
-            var velocity = direction * _speed;
+            //transform.Rotate(transform.up, h);
+            transform.Rotate(transform.up, _moveDirection.x * _rotateSpeed * Time.deltaTime);
+
+            //var direction = transform.forward * v;
+            Debug.Log(transform.forward);
+            _direction = transform.forward * _moveDirection.y;
+            var velocity = _direction * _speed;
 
 
             _anim.SetFloat("Speed", Mathf.Abs(velocity.magnitude));
