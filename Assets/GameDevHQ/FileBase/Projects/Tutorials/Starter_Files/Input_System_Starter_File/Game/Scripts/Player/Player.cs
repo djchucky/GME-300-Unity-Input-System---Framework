@@ -72,14 +72,12 @@ namespace Game.Scripts.Player
             //float h = Input.GetAxisRaw("Horizontal");
             //float v = Input.GetAxisRaw("Vertical");
             _moveDirection = _input.Player.Movement.ReadValue<Vector2>();
-            Debug.Log($"Movement value X: {_moveDirection.x}, Movement value Y: {_moveDirection.y}");
 
 
             //transform.Rotate(transform.up, h);
             transform.Rotate(transform.up, _moveDirection.x * _rotateSpeed * Time.deltaTime);
 
             //var direction = transform.forward * v;
-            Debug.Log(transform.forward);
             _direction = transform.forward * _moveDirection.y;
             var velocity = _direction * _speed;
 

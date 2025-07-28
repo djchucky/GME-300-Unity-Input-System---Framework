@@ -5296,6 +5296,7 @@ MonoBehaviour:
   _detonator: {fileID: 2496590969500232579}
   _followCam: {fileID: 1266060213}
   _model: {fileID: 852618543}
+  _rotateSpeed: 60
 --- !u!4 &359860634
 Transform:
   m_ObjectHideFlags: 0
@@ -11448,7 +11449,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: -5.8198737e-27}
+  m_BoundingSphereOverride: {x: -1, y: 8, z: 8, w: -9}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
