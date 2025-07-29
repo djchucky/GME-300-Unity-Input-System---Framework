@@ -5254,6 +5254,7 @@ GameObject:
   - component: {fileID: 359860634}
   - component: {fileID: 359860633}
   - component: {fileID: 359860632}
+  - component: {fileID: 359860635}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5312,6 +5313,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -102.957, z: 0}
+--- !u!114 &359860635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359860631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85acfb11b9422d841b43701c63f4413a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _laptop: {fileID: 816558616}
 --- !u!1001 &369121378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11446,7 +11460,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: -8.418915e-27}
+  m_BoundingSphereOverride: {x: 1.3563156e-19, y: -2.7520795e-19, z: 9.05e-43, w: 8e-44}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
