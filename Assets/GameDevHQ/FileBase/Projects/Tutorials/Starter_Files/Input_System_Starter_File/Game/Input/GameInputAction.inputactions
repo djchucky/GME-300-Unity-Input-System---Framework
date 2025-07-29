@@ -24,9 +24,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Detonate",
+                    "name": "Escape",
                     "type": "Button",
-                    "id": "2dc7275b-101f-430f-8439-0e3b2e696fa2",
+                    "id": "cba68754-5ff6-4011-9947-242ce545fba1",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -102,12 +102,12 @@
                 },
                 {
                     "name": "",
-                    "id": "32308fe8-a3e0-4302-ba5c-71da5efc7b91",
-                    "path": "<Keyboard>/space",
+                    "id": "a8dec02f-4a79-480f-bad0-ea15ef34950a",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Detonate",
+                    "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

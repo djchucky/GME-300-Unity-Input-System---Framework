@@ -31,10 +31,16 @@ namespace Game.Scripts.LiveObjects
 
         private void Update()
         {
+            //SwitchCameras();
+        }
+
+        //private void SwitchCameras()
+        public void SwitchCameras()
+        {
             if (_hacked == true)
             {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
+                /*if (Input.GetKeyDown(KeyCode.E))
+                {*/
                     var previous = _activeCamera;
                     _activeCamera++;
 
@@ -45,14 +51,24 @@ namespace Game.Scripts.LiveObjects
 
                     _cameras[_activeCamera].Priority = 11;
                     _cameras[previous].Priority = 9;
-                }
+                //}
 
-                if (Input.GetKeyDown(KeyCode.Escape))
+                /*if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     _hacked = false;
                     onHackEnded?.Invoke();
                     ResetCameras();
-                }
+                }*/
+            }
+        }
+
+        public void LeaveCameras()
+        {
+            if (_hacked == true)
+            {
+                _hacked = false;
+                onHackEnded?.Invoke();
+                ResetCameras();
             }
         }
 

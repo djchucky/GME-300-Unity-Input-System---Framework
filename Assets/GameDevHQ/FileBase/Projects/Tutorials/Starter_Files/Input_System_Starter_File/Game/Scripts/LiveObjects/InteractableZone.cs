@@ -28,12 +28,11 @@ namespace Game.Scripts.LiveObjects
         // new input system setup
         private GameInputAction _input;
         private InputBinding _inputBinding;
-        private string _inputPathAction;
-        
-        
-        
-        
+        private string _inputPathAction;    
+            
         ////////////////////////////////
+
+
         [SerializeField]
         private ZoneType _zoneType;
         [SerializeField]
