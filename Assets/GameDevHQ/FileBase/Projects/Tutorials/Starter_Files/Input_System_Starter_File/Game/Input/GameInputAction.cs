@@ -156,6 +156,33 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""3ce1efe0-3b93-4a98-a813-aba74961c4f5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Not Thrusting"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e24babb-b386-4e72-8d96-849c9e900aa5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""24d6cd8a-7fe0-4162-adb0-e707b5188732"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -224,6 +251,83 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""Thrust"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b51543d1-0fa8-4dcd-98df-dae616c13516"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94f8b47c-c7d5-442f-9516-29fb0920b7e5"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Not Thrusting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""0648e1a9-71fc-43f0-8d31-92b060a981fb"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""4e9d87f1-7bcd-4d22-9682-dbcf5142ee62"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""77de37ee-73c0-45d5-aa6c-0781d01d3f35"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""c9547b58-617c-4817-b9e4-1a00b0183fc1"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""124909ec-2342-4a59-95dc-3aadfd16a508"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -239,6 +343,9 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
         m_Drone = asset.FindActionMap("Drone", throwIfNotFound: true);
         m_Drone_Movement = m_Drone.FindAction("Movement", throwIfNotFound: true);
         m_Drone_Thrust = m_Drone.FindAction("Thrust", throwIfNotFound: true);
+        m_Drone_Escape = m_Drone.FindAction("Escape", throwIfNotFound: true);
+        m_Drone_NotThrusting = m_Drone.FindAction("Not Thrusting", throwIfNotFound: true);
+        m_Drone_Rotate = m_Drone.FindAction("Rotate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -364,12 +471,18 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
     private List<IDroneActions> m_DroneActionsCallbackInterfaces = new List<IDroneActions>();
     private readonly InputAction m_Drone_Movement;
     private readonly InputAction m_Drone_Thrust;
+    private readonly InputAction m_Drone_Escape;
+    private readonly InputAction m_Drone_NotThrusting;
+    private readonly InputAction m_Drone_Rotate;
     public struct DroneActions
     {
         private @GameInputAction m_Wrapper;
         public DroneActions(@GameInputAction wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Drone_Movement;
         public InputAction @Thrust => m_Wrapper.m_Drone_Thrust;
+        public InputAction @Escape => m_Wrapper.m_Drone_Escape;
+        public InputAction @NotThrusting => m_Wrapper.m_Drone_NotThrusting;
+        public InputAction @Rotate => m_Wrapper.m_Drone_Rotate;
         public InputActionMap Get() { return m_Wrapper.m_Drone; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -385,6 +498,15 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
             @Thrust.started += instance.OnThrust;
             @Thrust.performed += instance.OnThrust;
             @Thrust.canceled += instance.OnThrust;
+            @Escape.started += instance.OnEscape;
+            @Escape.performed += instance.OnEscape;
+            @Escape.canceled += instance.OnEscape;
+            @NotThrusting.started += instance.OnNotThrusting;
+            @NotThrusting.performed += instance.OnNotThrusting;
+            @NotThrusting.canceled += instance.OnNotThrusting;
+            @Rotate.started += instance.OnRotate;
+            @Rotate.performed += instance.OnRotate;
+            @Rotate.canceled += instance.OnRotate;
         }
 
         private void UnregisterCallbacks(IDroneActions instance)
@@ -395,6 +517,15 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
             @Thrust.started -= instance.OnThrust;
             @Thrust.performed -= instance.OnThrust;
             @Thrust.canceled -= instance.OnThrust;
+            @Escape.started -= instance.OnEscape;
+            @Escape.performed -= instance.OnEscape;
+            @Escape.canceled -= instance.OnEscape;
+            @NotThrusting.started -= instance.OnNotThrusting;
+            @NotThrusting.performed -= instance.OnNotThrusting;
+            @NotThrusting.canceled -= instance.OnNotThrusting;
+            @Rotate.started -= instance.OnRotate;
+            @Rotate.performed -= instance.OnRotate;
+            @Rotate.canceled -= instance.OnRotate;
         }
 
         public void RemoveCallbacks(IDroneActions instance)
@@ -422,5 +553,8 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnThrust(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
+        void OnNotThrusting(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
     }
 }

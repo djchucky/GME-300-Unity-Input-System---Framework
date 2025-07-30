@@ -49,4 +49,15 @@ public class PlayerManager : MonoBehaviour
         _player.CalcutateMovement(_moveDirection, _direction);
         
     }
+
+    public void DisablePlayerInput()
+    {
+        _input.Player.Disable();
+    }
+
+    public void EnablePlayerInput()
+    {
+        _input.Player.Enable();
+    }
+
 }

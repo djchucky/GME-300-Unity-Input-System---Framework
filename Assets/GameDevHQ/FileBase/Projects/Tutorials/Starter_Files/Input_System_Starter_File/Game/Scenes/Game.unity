@@ -11460,7 +11460,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.3563156e-19, y: -2.7520795e-19, z: 9.05e-43, w: 8e-44}
+  m_BoundingSphereOverride: {x: 716.74054, y: 2.6778036e+20, z: 7.2059803e+31, w: 2.2141362e-10}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -17633,6 +17633,7 @@ MonoBehaviour:
   _propAnim: {fileID: 181193216}
   _droneCam: {fileID: 106664337}
   _interactableZone: {fileID: 1810029383}
+  _playerManager: {fileID: 359860635}
 --- !u!65 &1073608671
 BoxCollider:
   m_ObjectHideFlags: 0
